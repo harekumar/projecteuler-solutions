@@ -4,6 +4,11 @@ package projecteuler.projecteuler.problems;
  * 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder. 
  * What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
  * 
+ * Output: 
+ * 
+ * SmallestDivisibleNo: 232792560 
+ * Start: 272086618056014 End: 272086618765795 Diff: 709781 Nanoseconds
+ * 
  * @author Hare Kumar
  *
  */
@@ -38,36 +43,19 @@ public class Prob5 {
 		Long smallestDivisbleNo = 1L;
 		
 		for(long i = this.lowerRange; i<= this.higherRange; i++) {
-			smallestDivisbleNo = findLCM(smallestDivisbleNo, i);
+			// smallestDivisbleNo = findLCM(smallestDivisbleNo, i);
+			smallestDivisbleNo *= i/findGCM(smallestDivisbleNo,i);
 		}
-		
-		
-		/* Brute force implementation
-		 * boolean cond = true;
-		 * while(cond) {
-			int count = 0;
-			for(int i = this.lowerRange; i<= this.higherRange; i++) {
-				if(smallestDivisbleNo % i == 0) {
-					count++;
-				} else {
-					smallestDivisbleNo++;
-					break;
-				}
-			}
-			if(count == this.higherRange)
-				cond = false;
-		}*/
 		
 		System.out.println("SmallestDivisibleNo: " + smallestDivisbleNo);
 	}
 	
-	private Long findLCM(Long a, Long b) {
-		
+/*	private Long findLCM(Long a, Long b) {
 		long lcm = 1, hcf = 1;
 	    hcf = findGCM(a, b);
-	    lcm=(a*b)/hcf;	
+	    lcm=(a*b)/hcf;
 	    return lcm;
-	}
+	}*/
 	
 	// Euclidean algorithm to find GCM
 	private Long findGCM(long a, long b) {
